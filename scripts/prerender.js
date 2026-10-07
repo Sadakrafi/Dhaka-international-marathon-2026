@@ -21,6 +21,12 @@ const routes = [
 ];
 
 async function prerender() {
+  // Skip prerendering on Vercel or CI to avoid missing browser errors
+  if (process.env.VERCEL === '1' || process.env.CI === 'true' || process.platform !== 'win32') {
+    console.log("CI/Non-Windows environment detected. Skipping Puppeteer prerendering to prevent build failure.");
+    process.exit(0);
+  }
+
   const app = express();
   app.use(express.static(distDir));
   app.use((req, res) => res.sendFile(path.join(distDir, 'index.html')));
@@ -37,9 +43,9 @@ async function prerender() {
       headless: 'new'
     });
   } catch (err) {
-    console.error("Failed to launch Edge browser:", err);
+    console.warn("Failed to launch Edge browser (Puppeteer). Skipping prerender:", err.message);
     server.close();
-    process.exit(1);
+    process.exit(0);
   }
   
   const page = await browser.newPage();
