@@ -25,7 +25,10 @@ export function Hero() {
 
         {/* 4. Call to Action Buttons */}
         <div className={styles.buttonGroup}>
-          <button className={styles.btnOutline}>
+          <button 
+            className={styles.btnOutline}
+            onClick={() => document.getElementById('about-events')?.scrollIntoView({ behavior: 'smooth' })}
+          >
             Learn more
           </button>
           <button className={styles.btnSolid}>

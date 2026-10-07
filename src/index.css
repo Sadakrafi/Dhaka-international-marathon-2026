@@ -103,7 +103,6 @@ h1, h2, h3, h4, h5, h6 {
   padding-right: var(--container-padding);
 }
 
-
 /* Global Home Page Grid Background */
 .home-page {
   background-color: #ffffff;
@@ -114,3 +113,5 @@ h1, h2, h3, h4, h5, h6 {
   background-position: center top;
   min-height: 100vh;
 }
+
+html { scroll-behavior: smooth; }

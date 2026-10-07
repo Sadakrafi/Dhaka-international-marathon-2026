@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './PastEvents.module.css';
 
-// Import the 6 provided images
-import event1 from '../../assets/past-event-1.jpg';
-import event2 from '../../assets/past-event-2.jpg';
-import event3 from '../../assets/past-event-3.jpg';
-import event4 from '../../assets/past-event-4.jpg';
-import event5 from '../../assets/past-event-5.jpg';
-import event6 from '../../assets/past-event-6.jpg';
+// Import the 6 real event images
+import event1 from '../../assets/past-real-1.jpg';
+import event2 from '../../assets/past-real-2.jpg';
+import event3 from '../../assets/past-real-3.jpg';
+import event4 from '../../assets/past-real-4.jpg';
+import event5 from '../../assets/past-real-5.jpg';
+import event6 from '../../assets/past-real-6.jpg';
 
 export function PastEvents() {
   const events = [

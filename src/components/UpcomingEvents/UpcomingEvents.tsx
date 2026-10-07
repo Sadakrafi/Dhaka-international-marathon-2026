@@ -8,10 +8,10 @@ import event4 from '../../assets/event-4.jpg'
 
 export function UpcomingEvents() {
   const events = [
-    { id: 1, image: event1, price: '৳ 00', title: 'Marathon (42.2 KM)', dateDay: 'Tue', dateNum: '21', dateMon: 'Jan' },
-    { id: 2, image: event2, price: '৳ 00', title: 'Marathon (42.2 KM)', dateDay: 'Tue', dateNum: '21', dateMon: 'Jan' },
-    { id: 3, image: event3, price: '৳ 00', title: 'Marathon (42.2 KM)', dateDay: 'Tue', dateNum: '21', dateMon: 'Jan' },
-    { id: 4, image: event4, price: '৳ 00', title: 'Marathon (42.2 KM)', dateDay: 'Tue', dateNum: '21', dateMon: 'Jan' },
+    { id: 1, image: event1, price: '৳ 00', title: 'Marathon (42.2 KM)', dateDay: 'Thu', dateNum: '15', dateMon: 'Oct' },
+    { id: 2, image: event2, price: '৳ 00', title: 'Marathon (42.2 KM)', dateDay: 'Thu', dateNum: '15', dateMon: 'Oct' },
+    { id: 3, image: event3, price: '৳ 00', title: 'Marathon (42.2 KM)', dateDay: 'Thu', dateNum: '15', dateMon: 'Oct' },
+    { id: 4, image: event4, price: '৳ 00', title: 'Marathon (42.2 KM)', dateDay: 'Thu', dateNum: '15', dateMon: 'Oct' },
   ]
 
   return (

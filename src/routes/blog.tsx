@@ -1,10 +1,16 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { ComingSoon } from '../components/ComingSoon/ComingSoon'
+import { Blog } from '../components/Blog/Blog'
 
 export const Route = createFileRoute('/blog')({
   component: BlogComponent,
 })
 
 function BlogComponent() {
-  return <ComingSoon pageName="Blog" />
+  return (
+    <div className="home-page">
+      <div style={{ paddingTop: '150px' }}>
+        <Blog />
+      </div>
+    </div>
+  )
 }

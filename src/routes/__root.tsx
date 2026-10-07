@@ -1,5 +1,7 @@
 import { createRootRoute, Outlet } from '@tanstack/react-router'
 import { Header } from '../components/Header/Header'
+import { CTA } from '../components/CTA/CTA'
+import { Footer } from '../components/Footer/Footer'
 
 export const Route = createRootRoute({
   component: () => (
@@ -8,7 +10,8 @@ export const Route = createRootRoute({
       <main>
         <Outlet />
       </main>
-      {/* Footer component will go here in a later Phase */}
+      <CTA />
+      <Footer />
     </div>
   ),
 })

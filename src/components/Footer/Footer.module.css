@@ -73,8 +73,13 @@
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
+.newsBtn:hover {
+  background-color: #072216;
+  box-shadow: 0 4px 12px rgba(10, 46, 31, 0.3);
+}
 /* Middle Row */
 .middleRow {
   display: grid;

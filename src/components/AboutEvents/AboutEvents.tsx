@@ -3,7 +3,7 @@ import aboutImage from '../../assets/about-events-3.jpg'
 
 export function AboutEvents() {
   return (
-    <section className={styles.section}>
+    <section id="about-events" className={styles.section}>
       <div className={styles.container}>
         
         <div className={styles.header}>

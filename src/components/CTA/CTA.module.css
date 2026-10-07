@@ -66,10 +66,15 @@
 .arrowBtn:hover {
   background-color: rgba(255, 255, 255, 0.1);
   border-color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  .section {
+    padding: 80px 20px 100px 20px;
+  }
   .title {
-    font-size: 36px;
+    font-size: 32px;
   }
 }

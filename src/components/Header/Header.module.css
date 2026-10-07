@@ -25,9 +25,9 @@
 .logoArea {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 
-/* Reduced width to make the oval tighter, matching your image */
 .logoOval {
   width: 66px; 
   height: 48px;
@@ -50,6 +50,7 @@
   justify-content: center;
   gap: 32px;
   align-items: center;
+  flex: 1;
 }
 
 .navLink {
@@ -71,9 +72,9 @@
 .btnArea {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 
-/* Button */
 .loginBtn {
   display: flex;
   align-items: center;
@@ -87,13 +88,15 @@
   font-weight: 500;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.3s ease;
   height: 44px;
   white-space: nowrap;
 }
 
 .loginBtn:hover {
   background-color: #072216;
+  box-shadow: 0 4px 12px rgba(10, 46, 31, 0.3);
+  transform: translateY(-1px);
 }
 
 .iconCircle {
@@ -107,21 +110,6 @@
   color: var(--color-primary-green);
 }
 
-.topRow {
-  display: flex;
-  align-items: center;
-  width: auto; /* Only take space needed on desktop */
-}
-
-.mobileMenuBtn {
-  display: none;
-  background: none;
-  border: none;
-  color: #0A3C19;
-  cursor: pointer;
-  padding: 8px;
-}
-
 /* --- FULLY RESPONSIVE FIXES --- */
 
 @media (max-width: 900px) {
@@ -133,53 +121,38 @@
   }
 }
 
-/* On phones: hide nav by default, show hamburger */
+/* On phones: allow horizontal scrolling for navigation */
 @media (max-width: 768px) {
   .header {
-    flex-direction: column;
-    align-items: stretch;
     border-radius: 52px; 
-    padding: 12px 20px;
-    transition: border-radius 0.3s ease;
+    padding: 8px 12px;
+    gap: 12px;
   }
   
-  .header.open {
-    border-radius: 24px;
-    background-color: #FFFFFF;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  .nav {
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 4px; /* for scrollbar */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
   }
 
-  .topRow {
-    width: 100%;
-    justify-content: space-between;
+  .nav::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
   }
 
-  .mobileMenuBtn {
-    display: block;
-  }
-
-  /* Hidden by default on mobile */
-  .nav, .btnArea {
-    display: none;
-  }
-
-  /* When menu is open */
-  .nav.open {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-top: 24px;
-    margin-bottom: 24px;
-  }
-  
   .navLink {
-    font-size: 16px;
-    padding: 8px 0;
+    font-size: 14px;
   }
 
-  .btnArea.open {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 12px;
+  .loginBtn {
+    padding: 6px 6px 6px 12px;
+    gap: 8px;
+    font-size: 14px;
+  }
+
+  .iconCircle {
+    width: 28px;
+    height: 28px;
   }
 }
