@@ -1,0 +1,187 @@
+.section {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background-color: #111111; /* Strict #111111 background */
+  padding: 0 24px 32px 24px; /* Removed top padding from section */
+  display: flex;
+  justify-content: center;
+  color: #FFFFFF;
+}
+
+.container {
+  width: 100%;
+  max-width: 960px; /* Reverted to perfectly align with the upper sections' global grid */
+  margin: 0 auto;
+  padding-top: 80px; 
+  border-top: 1px solid rgba(255, 255, 255, 0.1); 
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+/* Top Row */
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  /* Removed the incorrect bottom border from here */
+}
+
+.logo {
+  height: 72px; /* Reduced height to match design proportions */
+  width: auto;
+  max-width: 160px; /* Reduced width */
+  object-fit: contain;
+}
+
+.newsletter {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 360px; /* Reduced width */
+}
+
+.newsTitle {
+  font-family: var(--font-family-body);
+  font-size: 16px; /* Larger title */
+  font-weight: 600;
+  margin: 0;
+}
+
+.newsForm {
+  display: flex;
+  height: 42px; /* Reduced height */
+}
+
+.newsInput {
+  flex: 1;
+  border: none;
+  border-radius: 4px 0 0 4px;
+  padding: 0 16px;
+  font-family: var(--font-family-body);
+  font-size: 14px;
+  outline: none;
+}
+
+.newsBtn {
+  background-color: #1f6b35;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  padding: 0 32px;
+  font-family: var(--font-family-body);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Middle Row */
+.middleRow {
+  display: grid;
+  grid-template-columns: 4fr 3fr 3fr; /* Adjusted column ratios */
+  gap: 64px; /* Wider gaps between columns */
+}
+
+.colTitleWhite {
+  font-family: var(--font-family-body);
+  font-size: 20px; /* Larger title */
+  font-weight: 600;
+  color: #FFFFFF;
+  margin: 0 0 20px 0;
+}
+
+.colTitleAmber {
+  font-family: var(--font-family-body);
+  font-size: 16px; /* Larger title */
+  font-weight: 600;
+  color: #F4B34C;
+  margin: 0 0 20px 0;
+}
+
+.colText {
+  font-family: var(--font-family-body);
+  font-size: 13px; /* Slightly smaller for tighter fit */
+  font-weight: 400;
+  color: #999999;
+  line-height: 1.5; /* Reduced from 1.8 */
+  margin: 0 0 6px 0; /* Drastically reduced gap between lines */
+}
+
+.socialRow {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.socialCircle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.socialCircle:hover {
+  background-color: #1f6b35;
+}
+
+.linksList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Matched the tighter spacing */
+}
+
+.linksList li a {
+  text-decoration: none;
+  color: #999999;
+  font-family: var(--font-family-body);
+  font-size: 13px;
+  transition: color 0.2s ease;
+}
+
+.linksList li a:hover {
+  color: #FFFFFF;
+}
+
+/* Payment Strip */
+.paymentStrip {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.paymentImg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Copyright */
+.copyright {
+  text-align: center;
+  font-family: var(--font-family-body);
+  font-size: 13px; /* Slightly larger */
+  color: #888888;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.05); /* Very faint line matching design */
+}
+
+@media (max-width: 900px) {
+  .topRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+  }
+  .middleRow {
+    grid-template-columns: 1fr;
+  }
+}

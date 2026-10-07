@@ -1,0 +1,75 @@
+.section {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  padding: 120px 20px 160px 20px; /* Extra bottom padding for the fade */
+  display: flex;
+  justify-content: center;
+  background-color: #111111;
+  /* Overlay a linear fade to black at the bottom to guarantee a seamless seam with the Footer */
+  background: 
+    linear-gradient(to bottom, transparent 60%, #111111 95%),
+    radial-gradient(
+      circle at top center,
+      #114D2A 0%, 
+      #0E3F22 25%, 
+      #0A2C18 50%, 
+      #071F11 75%, 
+      #111111 100%
+    );
+}
+
+.container {
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+}
+
+.title {
+  font-family: var(--font-family-heading);
+  font-size: 56px; /* Reduced font size */
+  font-weight: 500;
+  color: #FFFFFF;
+  margin: 0;
+  line-height: 1.1;
+  white-space: pre-line;
+}
+
+.subtitle {
+  font-family: var(--font-family-body);
+  font-size: 15px; /* Reduced subtitle size */
+  font-weight: 400;
+  color: #c0d1c5;
+  margin: 0;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+.arrowBtn {
+  margin-top: 24px;
+  width: 48px; /* Reduced button size */
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.arrowBtn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #FFFFFF;
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 36px;
+  }
+}

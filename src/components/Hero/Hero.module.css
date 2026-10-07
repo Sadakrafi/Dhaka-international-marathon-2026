@@ -1,0 +1,153 @@
+.heroSection {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  padding: 193px 24px 100px 24px; /* Increased bottom padding to push slider down */
+  /* 
+    Layer 1: A white radial glow to hide the grid.
+    Using bulletproof standard syntax: horizontal-radius vertical-radius at x y
+  */
+  background-image: radial-gradient(60% 450px at center 380px, #ffffff 50%, rgba(255, 255, 255, 0) 100%);
+  background-size: 100% 100%;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 921px;
+  position: relative;
+  z-index: 2; /* Ensure content is above the background layers */
+}
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(10, 60, 25, 0.2);
+  color: #0A3C19;
+  font-family: var(--font-family-body);
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 45px; 
+  background-color: #FFFFFF;
+}
+
+.badgeIcon {
+  width: 14px;
+  height: 14px;
+  color: #0A3C19;
+}
+
+/* Heading */
+.heading {
+  font-size: 72px;
+  line-height: normal; /* Auto */
+  letter-spacing: 0px;
+  font-weight: 500; /* Gilroy-Medium */
+  font-family: var(--font-family-heading);
+  color: #0A3C19;
+  text-align: center;
+  max-width: 921px;
+  margin: 0 auto;
+  white-space: pre-line;
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: 13px; /* Reduced from 14px */
+  line-height: 1.6;
+  font-weight: 500;
+  font-family: var(--font-family-body);
+  text-align: center;
+  max-width: 440px; /* Reduced width to make the text block narrower */
+  margin: 40px auto 40px auto;
+  color: #666666;
+}
+
+/* CTA Buttons */
+.buttonGroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; 
+  flex-wrap: wrap;
+}
+
+.btnOutline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 156px;
+  height: 48px;
+  border-radius: 34px;
+  border: 1px solid #0A3C19;
+  background-color: transparent;
+  color: #0A3C19;
+  font-family: var(--font-family-body);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btnOutline:hover {
+  background-color: rgba(10, 60, 25, 0.04);
+}
+
+.btnSolid {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  height: 48px;
+  border-radius: 34px;
+  border: none;
+  background-color: #0A3C19;
+  color: #FFFFFF;
+  font-family: var(--font-family-body);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 0 6px 0 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btnSolid:hover {
+  background-color: #072216;
+}
+
+.iconCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  color: #0A3C19;
+  flex-shrink: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .heroSection {
+    padding-top: 150px;
+    background-size: 100% 100%, 40px 40px, 40px 40px;
+  }
+  .heading {
+    font-size: 48px;
+  }
+  .buttonGroup {
+    flex-direction: column;
+  }
+}

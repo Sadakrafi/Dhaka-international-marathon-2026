@@ -1,0 +1,133 @@
+.sliderSection {
+  width: 100%;
+  padding: 0px 0 40px 0; /* Reduced bottom padding */
+  position: relative;
+  overflow: hidden; /* Hide the overflow from side banners */
+}
+
+.sliderContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px; /* Reduced gap */
+  width: 100%;
+  position: relative;
+}
+
+/* Base slide styles */
+.slide {
+  border-radius: 32px;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+  background-color: #E8F0EB; /* subtle placeholder background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Center Active Slide */
+.activeSlide {
+  width: 1100px; /* Fixed width based on design */
+  height: 520px;
+  box-shadow: 0 20px 40px rgba(10, 60, 25, 0.15);
+  z-index: 2; /* Ensure it floats above side elements if they overlap slightly */
+}
+
+/* Side Peeking Slides */
+.sideSlide {
+  width: 900px;
+  height: 440px;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+.slideImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Navigation Arrows */
+.navBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.2s;
+}
+
+.navBtn:hover {
+  transform: translateY(-50%) scale(1.05);
+}
+
+.prevBtn {
+  left: 4%; /* Adjusted to sit nicely over the left slide */
+  background-color: #FFFFFF;
+  color: #0A3C19;
+}
+
+.nextBtn {
+  right: 4%;
+  background-color: #FFB300; /* Yellow arrow from screenshot */
+  color: #FFFFFF;
+}
+
+/* Pagination Dots */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 40px;
+}
+
+.dot {
+  width: 24px;
+  height: 4px;
+  background-color: #D1D5DB;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.activeDot {
+  background-color: #0A3C19;
+  width: 32px;
+}
+
+/* Placeholder Text just to verify structure */
+.placeholderText {
+  position: absolute;
+  font-family: var(--font-family-heading);
+  font-size: 24px;
+  color: #0A3C19;
+  opacity: 0.5;
+}
+
+/* Responsive Scaling */
+@media (max-width: 1400px) {
+  .activeSlide { width: 900px; height: 440px; }
+  .sideSlide { width: 700px; height: 360px; }
+}
+
+@media (max-width: 1024px) {
+  .activeSlide { width: 80vw; height: 40vw; }
+  .sideSlide { width: 70vw; height: 35vw; }
+  .sliderContainer { gap: 16px; }
+}
+
+@media (max-width: 768px) {
+  .activeSlide { width: 90vw; height: 50vw; border-radius: 16px; }
+  .sideSlide { display: none; /* Hide side slides completely on mobile */ }
+  .prevBtn { left: 8%; }
+  .nextBtn { right: 8%; }
+}

@@ -1,0 +1,150 @@
+.section {
+  width: 100%;
+  padding: 16px 24px 80px 24px; /* Reduced top padding to tighten the gap above */
+  display: flex;
+  justify-content: center;
+  background-color: #FFFFFF; 
+}
+
+.container {
+  width: 100%;
+  max-width: 960px; /* Crucial alignment constraint */
+}
+
+.card {
+  width: 100%;
+  border-radius: 24px;
+  /* Shade/gradient originating from the top right corner! */
+  background: radial-gradient(circle at top right, #7ab57a 0%, #0d461f 50%, #093716 100%);
+  padding: 24px 32px; /* Reduced height further */
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Reduced gap between header and buttons */
+  box-shadow: -4px 8px 24px rgba(0,0,0,0.1);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* Tighter gap in header */
+}
+
+.title {
+  font-family: var(--font-family-heading);
+  font-size: 32px; /* Slightly smaller */
+  font-weight: 500;
+  color: #F4B34C; /* Amber */
+  margin: 0;
+}
+
+.subtitle {
+  font-family: var(--font-family-body);
+  font-size: 14px;
+  font-weight: 400;
+  color: #FFFFFF;
+  margin: 0;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+.actionsRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px; /* Tighter gap between buttons */
+  width: 100%;
+}
+
+.actionBtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 100px; /* Pill shape */
+  padding: 8px 12px; /* Tighter padding for buttons */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  overflow: hidden; /* Prevent spill */
+}
+
+.actionBtn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.btnLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Closer icon and text */
+}
+
+.iconPlaceholder {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  flex-shrink: 0;
+}
+
+.btnText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  min-width: 0; /* Important for text truncation inside flex child */
+}
+
+.btnTitle {
+  font-family: var(--font-family-body);
+  font-size: 12px;
+  font-weight: 600;
+  color: #F4B34C;
+  margin: 0 0 2px 0;
+  white-space: nowrap;
+}
+
+.btnSubtitle {
+  font-family: var(--font-family-body);
+  font-size: 10px; /* Smaller text */
+  font-weight: 400;
+  color: #FFFFFF;
+  opacity: 0.9;
+  margin: 0;
+  white-space: nowrap; /* Force 1 line! */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.arrowRight {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #F4B34C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0A3C19;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.actionBtn:hover .arrowRight {
+  transform: translateX(4px);
+}
+
+/* Responsiveness */
+@media (max-width: 900px) {
+  .actionsRow {
+    flex-direction: column;
+  }
+}
+@media (max-width: 600px) {
+  .card {
+    padding: 32px 24px;
+  }
+}

@@ -1,0 +1,181 @@
+.section {
+  width: 100%;
+  padding: 100px 24px;
+  background-color: #F6F6F6; /* Solid background transition */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.container {
+  width: 100%;
+  max-width: 960px; /* Aligned exactly with Upcoming Events */
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 700px;
+}
+
+.title {
+  font-family: var(--font-family-heading);
+  font-size: 32px;
+  font-weight: 500;
+  color: #0A3C19;
+  margin: 0;
+}
+
+.subtitle {
+  font-family: var(--font-family-body);
+  font-size: 14px;
+  font-weight: 400;
+  color: #666666;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.card {
+  border-radius: 32px;
+  padding: 32px 40px; /* Reduced top/bottom padding to hug text tightly */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  /* Removed min-height to allow hugging text naturally */
+}
+
+.cardTall {
+  min-height: 280px; /* Changed to min-height so it can grow on smaller screens without overflowing */
+}
+
+.cardWhite {
+  background-color: #FFFFFF;
+}
+
+.cardGreen {
+  background-image: 
+    linear-gradient(to right, rgba(10, 60, 25, 0.95) 0%, rgba(10, 60, 25, 0.6) 100%),
+    url('../../assets/about-events-runner.jpg');
+  background-size: cover;
+  background-position: center;
+  color: #E8F0EB;
+  padding: 40px; 
+  padding-right: 48px;
+  border-top-right-radius: 0; 
+  justify-content: center; /* Vertically center the text beautifully */
+}
+
+/* Concave cutout */
+.cardGreen::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 76px; /* Smaller cutout */
+  height: 76px;
+  background-color: #F6F6F6; 
+  border-bottom-left-radius: 28px;
+  z-index: 1;
+}
+
+.cardImage {
+  padding: 0; 
+  overflow: hidden;
+  background-color: #E8F0EB;
+  display: block; 
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 32px;
+  display: block;
+}
+
+.cardTitle {
+  font-family: var(--font-family-heading);
+  font-size: 16px; 
+  font-weight: 600; 
+  color: #0A3C19;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.cardText {
+  font-family: var(--font-family-body);
+  font-size: 14px;
+  font-weight: 400; 
+  color: #888888; 
+  line-height: 1.8;
+  margin: 0;
+}
+
+.cardGreen .cardText {
+  color: #E8F0EB;
+  font-size: 13px; /* Reduced text size to fit better */
+  font-weight: 400;
+  line-height: 1.7; /* Slightly tighter line height */
+}
+
+.floatBtn {
+  position: absolute;
+  top: 18px; /* Adjusted to fit smaller cutout */
+  right: 18px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #FFB300; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  border: none;
+  cursor: pointer;
+  z-index: 2; 
+  transition: transform 0.2s ease;
+}
+
+/* Responsiveness */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cardGreen::before {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .floatBtn {
+    top: 10px;
+    right: 10px;
+  }
+}
+
+.floatBtn:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .cardGreen {
+    padding-right: 40px;
+  }
+}
