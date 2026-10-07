@@ -40,11 +40,11 @@ export function Header() {
 
         {/* Navigation */}
         <nav className={`${styles.nav} ${isMobileMenuOpen ? styles.open : ''}`}>
-          <Link to="/" className={`${styles.navLink} text-b1`} activeProps={{ className: styles.active }} activeOptions={{ exact: true }}>Home</Link>
-          <a href="#events" className={`${styles.navLink} text-b1`}>Events</a>
-          <a href="#about" className={`${styles.navLink} text-b1`}>About us</a>
-          <a href="#contact" className={`${styles.navLink} text-b1`}>Contact us</a>
-          <a href="#blog" className={`${styles.navLink} text-b1`}>Blog</a>
+          <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className={`${styles.navLink} text-b1`} activeProps={{ className: styles.active }} activeOptions={{ exact: true }}>Home</Link>
+          <Link to="/events" onClick={() => setIsMobileMenuOpen(false)} className={`${styles.navLink} text-b1`} activeProps={{ className: styles.active }}>Events</Link>
+          <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className={`${styles.navLink} text-b1`} activeProps={{ className: styles.active }}>About us</Link>
+          <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className={`${styles.navLink} text-b1`} activeProps={{ className: styles.active }}>Contact us</Link>
+          <Link to="/blog" onClick={() => setIsMobileMenuOpen(false)} className={`${styles.navLink} text-b1`} activeProps={{ className: styles.active }}>Blog</Link>
         </nav>
 
         {/* CTA Button Container */}
