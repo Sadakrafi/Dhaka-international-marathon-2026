@@ -54,7 +54,7 @@ export function ContactUs() {
             
             <div className={styles.formGroup}>
               <label htmlFor="name" className={styles.label}>Full Name</label>
-              <input required type="text" id="name" value={formData.name} onChange={handleChange} className={styles.input} placeholder="John Doe" />
+              <input required type="text" id="name" value={formData.name} onChange={handleChange} className={styles.input} placeholder="Enter Your Full Name" />
             </div>
 
             <div className={styles.formGroup}>
