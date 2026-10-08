@@ -80,8 +80,10 @@
 }
 
 .contactBtn {
+  display: inline-block;
   margin-top: 8px;
   background-color: #F4B34C;
+  text-decoration: none;
   color: #0A3C19;
   border: none;
   border-radius: 100px;

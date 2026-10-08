@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from '@tanstack/react-router';
 import styles from './FAQ.module.css';
 
 const faqData = [
@@ -53,7 +54,7 @@ export function FAQ() {
             <p className={styles.contactText}>
               Can't find the answer to your question? Send us an email and well get back to you as soon as possible!
             </p>
-            <button className={styles.contactBtn}>Send mail</button>
+            <Link to="/contact" className={styles.contactBtn}>Send mail</Link>
           </div>
         </div>
 
