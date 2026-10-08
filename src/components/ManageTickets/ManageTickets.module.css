@@ -65,7 +65,6 @@
   padding: 8px 12px; /* Tighter padding for buttons */
   cursor: pointer;
   transition: all 0.2s ease;
-  overflow: hidden; /* Prevent spill */
 }
 
 .actionBtn:hover {
@@ -77,6 +76,8 @@
   display: flex;
   align-items: center;
   gap: 8px; /* Closer icon and text */
+  flex: 1;
+  min-width: 0;
 }
 
 .iconPlaceholder {
@@ -115,9 +116,7 @@
   color: #FFFFFF;
   opacity: 0.9;
   margin: 0;
-  white-space: nowrap; /* Force 1 line! */
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
 }
 
 .arrowRight {

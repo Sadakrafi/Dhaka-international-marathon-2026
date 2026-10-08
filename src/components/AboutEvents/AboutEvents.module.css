@@ -179,3 +179,9 @@
     padding-right: 40px;
   }
 }
+
+@media (max-width: 600px) {
+  .cardGreen {
+    padding-top: 64px;
+  }
+}

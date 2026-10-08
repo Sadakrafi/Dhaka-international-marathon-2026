@@ -254,4 +254,18 @@
   .cardsGrid {
     grid-template-columns: 1fr;
   }
+  .card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 560px) {
+  .card {
+    aspect-ratio: auto;
+    height: 290px;
+  }
 }

@@ -147,4 +147,10 @@
   .grid {
     grid-template-columns: 1fr;
   }
+  .card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    aspect-ratio: 16 / 10;
+  }
 }
