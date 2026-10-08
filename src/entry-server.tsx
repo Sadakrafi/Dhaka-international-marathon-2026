@@ -1,26 +1,38 @@
 import { StrictMode } from 'react'
-import { renderToString } from 'react-dom/server'
-import { createMemoryHistory, RouterProvider, createRouter } from '@tanstack/react-router'
-import { routeTree } from './routeTree.gen'
+import {
+  RouterServer,
+  createRequestHandler,
+  renderRouterToString,
+} from '@tanstack/react-router/ssr/server'
+import { createRouter } from './router'
 
-export async function render(url: string) {
-  const memoryHistory = createMemoryHistory({
-    initialEntries: [url],
+export async function render({ request }: { request: Request }) {
+  const handler = createRequestHandler({
+    request,
+    createRouter,
   })
 
-  const router = createRouter({
-    routeTree,
-    history: memoryHistory,
-  })
-
-  // Wait for router to resolve current route
-  await router.load()
-
-  const html = renderToString(
-    <StrictMode>
-      <RouterProvider router={router} />
-    </StrictMode>
+  const response = await handler(({ responseHeaders, router }) =>
+    renderRouterToString({
+      responseHeaders,
+      router,
+      children: (
+        <StrictMode>
+          <RouterServer router={router} />
+        </StrictMode>
+      ),
+    }),
   )
 
-  return html
+  const html = await response.text()
+  const body = /<!doctype html>/i.test(html) ? html : `<!DOCTYPE html>${html}`
+  const headers = new Headers(response.headers)
+  headers.delete('content-length')
+  headers.set('content-type', 'text/html; charset=utf-8')
+
+  return new Response(body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  })
 }
