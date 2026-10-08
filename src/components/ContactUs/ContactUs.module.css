@@ -54,6 +54,8 @@
 .contactDetail {
   font-size: 16px;
   line-height: 1.6;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 /* Right side: Form */
@@ -93,7 +95,7 @@
   border: 1px solid #E0E0E0;
   border-radius: 8px;
   font-family: var(--font-family-body);
-  font-size: 15px;
+  font-size: 16px;
   color: #111111;
   transition: border-color 0.2s ease;
 }
@@ -128,7 +130,7 @@
   transform: translateY(-1px);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .container {
     flex-direction: column;
   }

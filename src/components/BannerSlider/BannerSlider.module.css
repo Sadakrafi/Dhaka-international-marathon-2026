@@ -126,7 +126,16 @@
 }
 
 @media (max-width: 768px) {
-  .activeSlide { width: 90vw; height: 50vw; border-radius: 16px; }
+  .activeSlide {
+    width: calc(100% - 32px);
+    height: auto;
+    aspect-ratio: 16 / 10;
+    border-radius: 16px;
+  }
+  .activeSlide .slideImg {
+    position: absolute;
+    inset: 0;
+  }
   .sideSlide { display: none; /* Hide side slides completely on mobile */ }
   .prevBtn { left: 8%; }
   .nextBtn { right: 8%; }
