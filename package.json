@@ -4,13 +4,15 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir dist-server && node scripts/build-ssg.js",
-    "lint": "oxlint",
-    "preview": "vite preview"
+    "dev": "node server.js",
+    "build": "tsc -b && vite build && vite build --ssr",
+    "start": "node server.js --prod",
+    "preview": "node server.js --prod",
+    "lint": "oxlint"
   },
   "dependencies": {
     "@tanstack/react-router": "^1.170.41",
+    "express": "^5.2.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },
@@ -21,10 +23,7 @@
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
-    "express": "^5.2.1",
-    "jsdom": "^30.1.2",
     "oxlint": "^1.81.0",
-    "puppeteer-core": "^25.12.0",
     "typescript": "~6.0.2",
     "vite": "^8.3.0"
   }

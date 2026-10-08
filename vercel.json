@@ -1,13 +1,14 @@
 {
-  "cleanUrls": true,
+  "framework": null,
+  "outputDirectory": "dist/client",
   "trailingSlash": false,
-  "routes": [
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+  "rewrites": [
+    { "source": "/", "destination": "/api/ssr?pathname=" },
+    { "source": "/:path*", "destination": "/api/ssr?pathname=:path*" }
+  ],
+  "functions": {
+    "api/ssr.js": {
+      "includeFiles": "dist/server/**"
     }
-  ]
+  }
 }
