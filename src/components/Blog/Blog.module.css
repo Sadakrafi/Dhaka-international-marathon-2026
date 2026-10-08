@@ -123,7 +123,23 @@
   .grid {
     grid-template-columns: 1fr;
   }
+  .card {
+    min-width: 0;
+  }
   .title {
     font-size: 36px;
+  }
+  .postImage {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 560px) {
+  .postImage {
+    aspect-ratio: auto;
+    height: 220px;
   }
 }
