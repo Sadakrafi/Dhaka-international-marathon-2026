@@ -2,22 +2,38 @@ import React, { useState } from 'react';
 import styles from './ContactUs.module.css';
 
 export function ContactUs() {
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    
-    // Hide message after 5 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-    }, 5000);
+    if (status === 'sending') return;
+    setStatus('sending');
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json().catch(() => null);
+      if (!response.ok || data?.ok !== true) {
+        throw new Error(typeof data?.error === 'string' ? data.error : "We couldn't send your message. Please try again.");
+      }
+
+      setStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      setErrorMessage(error instanceof Error ? error.message : "We couldn't send your message. Please try again.");
+      setStatus('error');
+    }
   };
 
   return (
@@ -38,7 +54,7 @@ export function ContactUs() {
 
           <div className={styles.contactItem}>
             <span className={styles.contactLabel}>Phone</span>
-            <span className={styles.contactDetail}>01333341612</span>
+            <a href="tel:+8801333341612" className={styles.phoneLink}>01333341612</a>
           </div>
 
           <div className={styles.contactItem}>
@@ -72,11 +88,19 @@ export function ContactUs() {
               <textarea required id="message" value={formData.message} onChange={handleChange} className={styles.textarea} placeholder="Write your message here..."></textarea>
             </div>
 
-            <button type="submit" className={styles.submitBtn}>Send Message</button>
-            
-            {isSubmitted && (
-              <div style={{ marginTop: '16px', color: '#0A3C19', fontWeight: '500', backgroundColor: '#E8F0EB', padding: '12px', borderRadius: '8px', textAlign: 'center' }}>
+            <button type="submit" className={styles.submitBtn} disabled={status === 'sending'}>
+              {status === 'sending' ? 'Sending...' : 'Send Message'}
+            </button>
+
+            {status === 'success' && (
+              <div className={styles.statusSuccess} role="status">
                 Thank you! Your message has been sent successfully.
+              </div>
+            )}
+
+            {status === 'error' && (
+              <div className={styles.statusError} role="alert">
+                {errorMessage}
               </div>
             )}
           </form>

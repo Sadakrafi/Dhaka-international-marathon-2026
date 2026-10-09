@@ -56,7 +56,7 @@ export function Footer() {
             <p className={styles.colText}>Registered Address: Bangladesh Army Headquarters, Dhaka Cantonment, Dhaka, Bangladesh</p>
             <p className={styles.colText}>Trade License No: 03-097531</p>
             <p className={styles.colText}>
-              Mobile: <a href="tel:+8801329931605" className={styles.phoneLink}>01329931605</a>
+              Mobile: <a href="tel:+8801333341612" className={styles.phoneLink}>01333341612</a>
             </p>
             <p className={styles.colText}>Email: info@dhakainternationalmarathon.org</p>
           </div>

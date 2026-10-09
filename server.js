@@ -1,11 +1,31 @@
+import fs from 'node:fs'
 import path from 'node:path'
 import express from 'express'
+import { handleContactRequest } from './api/contact.js'
+
+loadEnvFile()
 
 const isProd = process.argv.includes('--prod') || process.env.NODE_ENV === 'production'
 const port = Number(process.env.PORT) || 3000
 
 export async function createServer() {
   const app = express()
+  app.post('/api/contact', express.json({ limit: '32kb' }), async (req, res) => {
+    try {
+      const result = await handleContactRequest(req.body)
+      res.status(result.status).json(result.payload)
+    } catch {
+      console.error('Contact form send failed')
+      res.status(500).json({ error: "We couldn't send your message. Please try again." })
+    }
+  })
+  app.use((error, req, res, next) => {
+    if (error?.type === 'entity.parse.failed') {
+      res.status(400).json({ error: 'Enter your name, email, subject, and message.' })
+      return
+    }
+    next(error)
+  })
   /** @type {import('vite').ViteDevServer | undefined} */
   let vite
 
@@ -67,6 +87,27 @@ async function sendResponse(res, response) {
     res.setHeader(name, value)
   })
   res.end(await response.text())
+}
+
+function loadEnvFile() {
+  const file = path.resolve('.env')
+  if (!fs.existsSync(file)) return
+  const text = fs.readFileSync(file, 'utf8')
+  for (const line of text.split('\n')) {
+    const trimmed = line.trim()
+    if (!trimmed || trimmed.startsWith('#')) continue
+    const eq = trimmed.indexOf('=')
+    if (eq <= 0) continue
+    const key = trimmed.slice(0, eq).trim()
+    let value = trimmed.slice(eq + 1).trim()
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
+      value = value.slice(1, -1)
+    }
+    if (process.env[key] === undefined) process.env[key] = value
+  }
 }
 
 const app = await createServer()
