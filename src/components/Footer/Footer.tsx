@@ -55,7 +55,9 @@ export function Footer() {
             <p className={styles.colText}>Army Sports Control Board.</p>
             <p className={styles.colText}>Registered Address: Bangladesh Army Headquarters, Dhaka Cantonment, Dhaka, Bangladesh</p>
             <p className={styles.colText}>Trade License No: 03-097531</p>
-            <p className={styles.colText}>Mobile: 01329931605</p>
+            <p className={styles.colText}>
+              Mobile: <a href="tel:+8801329931605" className={styles.phoneLink}>01329931605</a>
+            </p>
             <p className={styles.colText}>Email: info@dhakainternationalmarathon.org</p>
           </div>
         </div>

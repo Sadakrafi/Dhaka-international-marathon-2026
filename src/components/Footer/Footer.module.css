@@ -113,6 +113,15 @@
   margin: 0 0 6px 0; /* Drastically reduced gap between lines */
 }
 
+.phoneLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.phoneLink:hover {
+  color: #FFFFFF;
+}
+
 .socialRow {
   display: flex;
   gap: 12px;
