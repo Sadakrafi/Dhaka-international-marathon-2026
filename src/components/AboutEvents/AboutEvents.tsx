@@ -1,5 +1,5 @@
 import styles from './AboutEvents.module.css'
-import aboutImage from '../../assets/about-events-3.jpg'
+import aboutImage from '../../assets/past-gallery-14.webp'
 
 export function AboutEvents() {
   return (
@@ -33,13 +33,13 @@ export function AboutEvents() {
 
           {/* Card 3 (Image) */}
           <div className={`${styles.card} ${styles.cardImage} ${styles.cardTall}`}>
-            <img src={aboutImage} alt="People shaking hands" className={styles.img} />
+            <img src={aboutImage} alt="Dhaka International Marathon participants on stage" className={styles.img} />
           </div>
 
           {/* Card 4 */}
           <div className={`${styles.card} ${styles.cardGreen} ${styles.cardTall}`}>
             <p className={styles.cardText}>
-              Bangladesh Army is organizing the DHAKA INTERNATIONAL MARATHON for the first time- exploiting it's years long expertise, skill and experience. With the kind directive of Respected Chief of Army Staff, Bangladesh Army, the race is going to be organized with an intention to inspire people and involve them more in the physical fitness domain. The race will be a Full Marathon (42.2 KM), a Half Marathon (21.1 KM) and a 10K run at 300 ft road area, Purbachal.
+              Bangladesh Army is organizing the DHAKA INTERNATIONAL MARATHON for the first time- exploiting it's years long expertise, skill and experience. With the kind directive of Respected Chief of Army Staff, Bangladesh Army, the race is going to be organized with an intention to inspire people and involve them more in the physical fitness domain. The race will be a Full Marathon (42 KM), a Half Marathon (21.1 KM) and a 10K run at 300 ft road area, Purbachal.
             </p>
             <button className={styles.floatBtn} aria-label="Learn more about marathon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
