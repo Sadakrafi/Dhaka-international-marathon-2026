@@ -1,18 +1,56 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './BannerSlider.module.css'
 import bannerCenter from '../../assets/banner-center.jpg'
 import bannerLeft from '../../assets/banner-left.jpg'
-import bannerRight from '../../assets/banner-right.jpg'
+import event1 from '../../assets/past-gallery-1.webp'
+import event2 from '../../assets/past-gallery-2.webp'
+import event3 from '../../assets/past-gallery-3.webp'
+import event4 from '../../assets/past-gallery-4.webp'
+import event5 from '../../assets/past-gallery-5.webp'
+import event6 from '../../assets/past-gallery-6.webp'
+import event7 from '../../assets/past-gallery-7.webp'
+import event8 from '../../assets/past-gallery-8.webp'
+import event9 from '../../assets/past-gallery-9.webp'
+import event10 from '../../assets/past-gallery-10.webp'
+import event11 from '../../assets/past-gallery-11.webp'
+import event12 from '../../assets/past-gallery-12.webp'
+import event13 from '../../assets/past-gallery-13.webp'
+import event14 from '../../assets/past-gallery-14.webp'
+import event15 from '../../assets/past-gallery-15.webp'
+
+const AUTOPLAY_MS = 5000
+
+const eventPhotos = [
+  event1, event2, event3, event4, event5,
+  event6, event7, event8, event9, event10,
+  event11, event12, event13, event14, event15,
+]
 
 export function BannerSlider() {
   const images = [
-    { id: 0, src: bannerLeft, alt: 'Army Sports Control Board' },
-    { id: 1, src: bannerCenter, alt: 'Dhaka International Marathon Banner' },
-    { id: 2, src: bannerRight, alt: 'Bangladesh Table Tennis Federation' },
+    { id: 'banner-left', src: bannerLeft, alt: 'Army Sports Control Board' },
+    { id: 'banner-center', src: bannerCenter, alt: 'Dhaka International Marathon Banner' },
+    ...eventPhotos.map((src, index) => ({
+      id: `event-${index + 1}`,
+      src,
+      alt: `Past event photo ${index + 1}`,
+    })),
   ]
 
   // Start with index 1 (bannerCenter) as the active middle image
   const [activeIndex, setActiveIndex] = useState(1)
+  const [paused, setPaused] = useState(false)
+
+  useEffect(() => {
+    if (paused) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const timer = window.setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % images.length)
+    }, AUTOPLAY_MS)
+
+    return () => window.clearInterval(timer)
+  }, [paused, activeIndex, images.length])
 
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % images.length)
@@ -27,7 +65,11 @@ export function BannerSlider() {
   }
 
   return (
-    <section className={styles.sliderSection}>
+    <section
+      className={styles.sliderSection}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
       <div className={styles.sliderContainer}>
         
         {/* Left Peeking Slide */}

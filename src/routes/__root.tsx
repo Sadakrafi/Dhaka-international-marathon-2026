@@ -3,6 +3,7 @@ import {
   Outlet,
   Scripts,
   createRootRoute,
+  useRouterState,
 } from '@tanstack/react-router'
 import { Header } from '../components/Header/Header'
 import { CTA } from '../components/CTA/CTA'
@@ -88,6 +89,9 @@ export const Route = createRootRoute({
 })
 
 function RootComponent() {
+  const pathname = useRouterState({ select: (state) => state.location.pathname })
+  const showCta = pathname !== '/contact'
+
   return (
     <html lang="en">
       <head>
@@ -99,7 +103,7 @@ function RootComponent() {
           <main>
             <Outlet />
           </main>
-          <CTA />
+          {showCta && <CTA />}
           <Footer />
         </div>
         <Scripts />
