@@ -67,7 +67,7 @@ export function Footer() {
 
         {/* Copyright */}
         <div className={styles.copyright}>
-          © 2025 DHAKA INTERNATIONAL MARATHON.
+          © 2026 DHAKA INTERNATIONAL MARATHON.
         </div>
 
       </div>
