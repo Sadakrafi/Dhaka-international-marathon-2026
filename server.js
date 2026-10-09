@@ -1,7 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import express from 'express'
-import { handleContactRequest } from './api/contact.js'
 
 loadEnvFile()
 
@@ -10,22 +9,6 @@ const port = Number(process.env.PORT) || 3000
 
 export async function createServer() {
   const app = express()
-  app.post('/api/contact', express.json({ limit: '32kb' }), async (req, res) => {
-    try {
-      const result = await handleContactRequest(req.body)
-      res.status(result.status).json(result.payload)
-    } catch {
-      console.error('Contact form send failed')
-      res.status(500).json({ error: "We couldn't send your message. Please try again." })
-    }
-  })
-  app.use((error, req, res, next) => {
-    if (error?.type === 'entity.parse.failed') {
-      res.status(400).json({ error: 'Enter your name, email, subject, and message.' })
-      return
-    }
-    next(error)
-  })
   /** @type {import('vite').ViteDevServer | undefined} */
   let vite
 
@@ -61,7 +44,12 @@ export async function createServer() {
       })
 
       const response = await entry.render({ request })
-      await sendResponse(res, response)
+      if (!isProd && vite) {
+        const html = injectDevStylesheets(await response.text(), await collectDevStylesheets(vite))
+        await sendResponse(res, response, html)
+      } else {
+        await sendResponse(res, response)
+      }
     } catch (error) {
       if (!isProd && vite) vite.ssrFixStacktrace(error)
       console.error(error)
@@ -81,12 +69,45 @@ function toHeaders(incoming) {
   return headers
 }
 
-async function sendResponse(res, response) {
+async function sendResponse(res, response, html) {
   res.status(response.status)
   response.headers.forEach((value, name) => {
     res.setHeader(name, value)
   })
-  res.end(await response.text())
+  res.end(html ?? (await response.text()))
+}
+
+async function collectDevStylesheets(vite) {
+  const entry = await vite.moduleGraph.getModuleByUrl('/src/entry-server.tsx', true)
+  const hrefs = []
+  const seen = new Set()
+
+  const visit = (mod) => {
+    if (!mod || seen.has(mod)) return
+    seen.add(mod)
+    const href = stylesheetHref(mod.url)
+    if (href) hrefs.push(href)
+    const imported = mod.ssrImportedModules?.size ? mod.ssrImportedModules : mod.importedModules
+    if (!imported) return
+    for (const child of imported) visit(child)
+  }
+
+  visit(entry)
+  const unique = [...new Set(hrefs)]
+  unique.sort((a, b) => Number(b.endsWith('/index.css')) - Number(a.endsWith('/index.css')))
+  return unique
+}
+
+function stylesheetHref(value) {
+  if (!value) return ''
+  const pathname = value.split('?')[0].replace(/\\/g, '/')
+  return pathname.endsWith('.css') ? pathname : ''
+}
+
+function injectDevStylesheets(html, hrefs) {
+  if (!hrefs.length || !html.includes('</head>')) return html
+  const links = hrefs.map((href) => `<link rel="stylesheet" href="${href}">`).join('')
+  return html.replace('</head>', `${links}</head>`)
 }
 
 function loadEnvFile() {

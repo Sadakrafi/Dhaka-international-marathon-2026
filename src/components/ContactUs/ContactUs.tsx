@@ -1,10 +1,22 @@
 import React, { useState } from 'react';
 import styles from './ContactUs.module.css';
 
+const FORM_RECIPIENT = 'rokykhan002030@gmail.com';
+const FORM_ENDPOINT = `https://formsubmit.co/ajax/${FORM_RECIPIENT}`;
+const recentSends = new Map<string, number>();
+
+type FormFields = {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+};
+
 export function ContactUs() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
-  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
+  const [honey, setHoney] = useState('');
+  const [formData, setFormData] = useState<FormFields>({ name: '', email: '', subject: '', message: '' });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -16,22 +28,54 @@ export function ContactUs() {
     setStatus('sending');
     setErrorMessage('');
 
+    const fields = readFields(formData);
+    if (!fields.ok) {
+      setErrorMessage(fields.error);
+      setStatus('error');
+      return;
+    }
+
+    if (honey.trim()) {
+      setErrorMessage("We couldn't send your message. Please try again.");
+      setStatus('error');
+      return;
+    }
+
+    if (isDuplicate(fields.value)) {
+      setErrorMessage('This message was just sent. Please wait a moment before trying again.');
+      setStatus('error');
+      return;
+    }
+
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(FORM_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: fields.value.name,
+          email: fields.value.email,
+          subject: fields.value.subject,
+          message: fields.value.message,
+          _subject: fields.value.subject,
+          _replyto: fields.value.email,
+          _template: 'table',
+          _captcha: 'false',
+          _url: `${window.location.origin}/contact`,
+        }),
       });
 
       const data = await response.json().catch(() => null);
-      if (!response.ok || data?.ok !== true) {
-        throw new Error(typeof data?.error === 'string' ? data.error : "We couldn't send your message. Please try again.");
+      if (!response.ok || !isFormSubmitAcceptance(data)) {
+        throw new Error(formSubmitError(data));
       }
 
+      rememberSend(fields.value);
       setStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
-      setErrorMessage(error instanceof Error ? error.message : "We couldn't send your message. Please try again.");
+      const message = error instanceof Error ? error.message : '';
+      const offline = !message || message === 'Failed to fetch' || message.startsWith('NetworkError');
+      setErrorMessage(offline ? "We couldn't send your message. Please try again." : message);
       setStatus('error');
     }
   };
@@ -67,25 +111,37 @@ export function ContactUs() {
         <div className={styles.formPanel}>
           <h2 className={styles.formTitle}>Send us a Message</h2>
           <form onSubmit={handleSubmit}>
+            <div className={styles.honey} aria-hidden="true">
+              <label htmlFor="_honey">Company</label>
+              <input
+                type="text"
+                id="_honey"
+                name="_honey"
+                tabIndex={-1}
+                autoComplete="off"
+                value={honey}
+                onChange={(e) => setHoney(e.target.value)}
+              />
+            </div>
             
             <div className={styles.formGroup}>
               <label htmlFor="name" className={styles.label}>Full Name</label>
-              <input required type="text" id="name" value={formData.name} onChange={handleChange} className={styles.input} placeholder="Enter Your Full Name" />
+              <input required type="text" id="name" name="name" maxLength={200} value={formData.name} onChange={handleChange} className={styles.input} placeholder="Enter Your Full Name" />
             </div>
 
             <div className={styles.formGroup}>
               <label htmlFor="email" className={styles.label}>Email Address</label>
-              <input required type="email" id="email" value={formData.email} onChange={handleChange} className={styles.input} placeholder="john@example.com" />
+              <input required type="email" id="email" name="email" maxLength={200} value={formData.email} onChange={handleChange} className={styles.input} placeholder="john@example.com" />
             </div>
 
             <div className={styles.formGroup}>
               <label htmlFor="subject" className={styles.label}>Subject</label>
-              <input required type="text" id="subject" value={formData.subject} onChange={handleChange} className={styles.input} placeholder="How can we help you?" />
+              <input required type="text" id="subject" name="subject" maxLength={200} value={formData.subject} onChange={handleChange} className={styles.input} placeholder="How can we help you?" />
             </div>
 
             <div className={styles.formGroup}>
               <label htmlFor="message" className={styles.label}>Message</label>
-              <textarea required id="message" value={formData.message} onChange={handleChange} className={styles.textarea} placeholder="Write your message here..."></textarea>
+              <textarea required id="message" name="message" maxLength={5000} value={formData.message} onChange={handleChange} className={styles.textarea} placeholder="Write your message here..."></textarea>
             </div>
 
             <button type="submit" className={styles.submitBtn} disabled={status === 'sending'}>
@@ -109,4 +165,66 @@ export function ContactUs() {
       </div>
     </section>
   )
+}
+
+function readFields(body: FormFields): { ok: true; value: FormFields } | { ok: false; error: string } {
+  const name = cleanLine(body.name, 200);
+  const email = cleanLine(body.email, 200);
+  const subject = cleanLine(body.subject, 200);
+  const message = cleanMessage(body.message, 5000);
+  if (!name || !email || !subject || !message) {
+    return { ok: false, error: 'Enter your name, email, subject, and message.' };
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return { ok: false, error: 'Enter a valid email address.' };
+  }
+  return { ok: true, value: { name, email, subject, message } };
+}
+
+function cleanLine(value: string, max: number) {
+  return value.replace(/[\r\n]+/g, ' ').trim().slice(0, max);
+}
+
+function cleanMessage(value: string, max: number) {
+  return value.replace(/\r\n/g, '\n').trim().slice(0, max);
+}
+
+function isDuplicate(fields: FormFields) {
+  const sentAt = recentSends.get(sendKey(fields));
+  return typeof sentAt === 'number' && Date.now() - sentAt < 20000;
+}
+
+function rememberSend(fields: FormFields) {
+  recentSends.set(sendKey(fields), Date.now());
+  if (recentSends.size > 100) {
+    const oldest = recentSends.keys().next().value;
+    if (oldest) recentSends.delete(oldest);
+  }
+}
+
+function sendKey(fields: FormFields) {
+  return `${fields.email}\n${fields.subject}\n${fields.message}`;
+}
+
+function isFormSubmitAcceptance(data: unknown) {
+  if (!data || typeof data !== 'object') return false;
+  const record = data as { success?: unknown; message?: unknown };
+  const accepted = record.success === true || record.success === 'true';
+  if (!accepted) return false;
+  return !isActivationMessage(record.message);
+}
+
+function formSubmitError(data: unknown) {
+  const message = data && typeof data === 'object' && typeof (data as { message?: unknown }).message === 'string'
+    ? (data as { message: string }).message.trim()
+    : '';
+  if (isActivationMessage(message)) {
+    return 'This contact form still needs a one-time activation. Open the FormSubmit email in the recipient inbox and click Activate Form, then try again.';
+  }
+  if (message && message.length <= 300) return message;
+  return "We couldn't send your message. Please try again.";
+}
+
+function isActivationMessage(message: unknown) {
+  return typeof message === 'string' && /activat/i.test(message);
 }
