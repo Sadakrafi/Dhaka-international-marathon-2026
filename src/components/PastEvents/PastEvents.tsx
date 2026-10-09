@@ -1,13 +1,21 @@
 import React from 'react';
 import styles from './PastEvents.module.css';
 
-// Import the 6 real event images
-import event1 from '../../assets/past-real-1.jpg';
-import event2 from '../../assets/past-real-2.jpg';
-import event3 from '../../assets/past-real-3.jpg';
-import event4 from '../../assets/past-real-4.jpg';
-import event5 from '../../assets/past-real-5.jpg';
-import event6 from '../../assets/past-real-6.jpg';
+import event1 from '../../assets/past-gallery-1.webp';
+import event2 from '../../assets/past-gallery-2.webp';
+import event3 from '../../assets/past-gallery-3.webp';
+import event4 from '../../assets/past-gallery-4.webp';
+import event5 from '../../assets/past-gallery-5.webp';
+import event6 from '../../assets/past-gallery-6.webp';
+import event7 from '../../assets/past-gallery-7.webp';
+import event8 from '../../assets/past-gallery-8.webp';
+import event9 from '../../assets/past-gallery-9.webp';
+import event10 from '../../assets/past-gallery-10.webp';
+import event11 from '../../assets/past-gallery-11.webp';
+import event12 from '../../assets/past-gallery-12.webp';
+import event13 from '../../assets/past-gallery-13.webp';
+import event14 from '../../assets/past-gallery-14.webp';
+import event15 from '../../assets/past-gallery-15.webp';
 
 export function PastEvents() {
   const events = [
@@ -17,6 +25,15 @@ export function PastEvents() {
     { id: 4, image: event4 },
     { id: 5, image: event5 },
     { id: 6, image: event6 },
+    { id: 7, image: event7 },
+    { id: 8, image: event8 },
+    { id: 9, image: event9 },
+    { id: 10, image: event10 },
+    { id: 11, image: event11 },
+    { id: 12, image: event12 },
+    { id: 13, image: event13 },
+    { id: 14, image: event14 },
+    { id: 15, image: event15 },
   ];
 
   return (

@@ -1,17 +1,17 @@
 import styles from './UpcomingEvents.module.css'
 
 import ticketIcon from '../../assets/ticket-icon.png'
-import event1 from '../../assets/event-1.jpg'
-import event2 from '../../assets/event-2.jpg'
-import event3 from '../../assets/event-3.jpg'
+import event1 from '../../assets/full-marathon.webp'
+import event2 from '../../assets/past-gallery-12.webp'
+import event3 from '../../assets/past-gallery-9.webp'
 import event4 from '../../assets/event-4.jpg' 
 
 export function UpcomingEvents() {
   const events = [
-    { id: 1, image: event1, price: '৳ 900', title: 'Full Marathon (42.2 KM)', dateDay: 'Thu', dateNum: '15', dateMon: 'Oct' },
-    { id: 2, image: event2, price: '৳ 700', title: '21.1K (Half Marathon)', dateDay: 'Thu', dateNum: '15', dateMon: 'Oct' },
-    { id: 3, image: event3, price: '৳ 600', title: '10K (General)', dateDay: 'Thu', dateNum: '15', dateMon: 'Oct' },
-    { id: 4, image: event4, price: '৳ 600', title: '10k (Veteran)', dateDay: 'Thu', dateNum: '15', dateMon: 'Oct' },
+    { id: 1, image: event1, price: '৳ 900', title: 'Full Marathon (42 KM)', dateDay: 'Thu', dateNum: '15', dateMon: 'Oct' },
+    { id: 2, image: event2, price: '৳ 700', title: 'Half Marathon (21.1 KM)', dateDay: 'Thu', dateNum: '15', dateMon: 'Oct' },
+    { id: 3, image: event3, price: '৳ 600', title: 'General (10 KM)', dateDay: 'Thu', dateNum: '15', dateMon: 'Oct' },
+    { id: 4, image: event4, price: '৳ 600', title: 'Veteran (10 KM)', dateDay: 'Thu', dateNum: '15', dateMon: 'Oct' },
   ]
 
   return (
