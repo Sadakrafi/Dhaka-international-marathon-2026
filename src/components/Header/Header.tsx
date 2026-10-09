@@ -1,7 +1,17 @@
-import { useState } from 'react'
-import { Link } from '@tanstack/react-router'
+import { useState, useSyncExternalStore } from 'react'
+import { Link, useRouterState } from '@tanstack/react-router'
 import styles from './Header.module.css'
 import logoImage from '../../assets/logo.png'
+
+const ABOUT_HASH = 'about-events'
+
+function useIsHydrated() {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  )
+}
 
 function LoginAction({ className, onClick }: { className?: string; onClick?: () => void }) {
   return (
@@ -18,6 +28,11 @@ function LoginAction({ className, onClick }: { className?: string; onClick?: () 
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const hydrated = useIsHydrated()
+  const pathname = useRouterState({ select: (state) => state.location.pathname })
+  // The hash is not part of the request, so SSR treats `/` as Home. After hydration,
+  // includeHash takes over and this fallback is removed in the same render.
+  const homeActiveBeforeHydration = !hydrated && pathname === '/'
 
   const closeMenu = () => setMenuOpen(false)
 
@@ -37,9 +52,28 @@ export function Header() {
         </div>
 
         <nav id="site-nav" className={`${styles.nav} ${menuOpen ? styles.navOpen : ''}`}>
-          <Link to="/" className={`${styles.navLink} text-b1`} activeProps={{ className: styles.active }} activeOptions={{ exact: true }} onClick={closeMenu}>Home</Link>
+          <Link
+            to="/"
+            className={[styles.navLink, 'text-b1', homeActiveBeforeHydration ? styles.active : ''].filter(Boolean).join(' ')}
+            activeProps={{ className: styles.active }}
+            activeOptions={{ exact: true, includeHash: true }}
+            aria-current={homeActiveBeforeHydration ? 'page' : undefined}
+            data-status={homeActiveBeforeHydration ? 'active' : undefined}
+            onClick={closeMenu}
+          >
+            Home
+          </Link>
           <Link to="/events" className={`${styles.navLink} text-b1`} activeProps={{ className: styles.active }} onClick={closeMenu}>Events</Link>
-          <Link to="/" hash="about-events" className={`${styles.navLink} text-b1`} onClick={closeMenu}>About us</Link>
+          <Link
+            to="/"
+            hash={ABOUT_HASH}
+            className={`${styles.navLink} text-b1`}
+            activeProps={{ className: styles.active }}
+            activeOptions={{ exact: true, includeHash: true }}
+            onClick={closeMenu}
+          >
+            About us
+          </Link>
           <Link to="/contact" className={`${styles.navLink} text-b1`} activeProps={{ className: styles.active }} onClick={closeMenu}>Contact us</Link>
           <Link to="/blog" className={`${styles.navLink} text-b1`} activeProps={{ className: styles.active }} onClick={closeMenu}>Blog</Link>
           <LoginAction className={styles.loginInMenu} onClick={closeMenu} />
