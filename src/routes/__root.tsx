@@ -12,8 +12,8 @@ import { Footer } from '../components/Footer/Footer'
 const eventJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Event',
-  name: 'Dhaka International Marathon 2025',
-  startDate: '2025-02-08T00:00:00+06:00',
+  name: 'Dhaka International Marathon 2026',
+  startDate: '2026-02-08T00:00:00+06:00',
   location: {
     '@type': 'Place',
     name: 'Purbachal, Dhaka',
@@ -37,10 +37,10 @@ export const Route = createRootRoute({
       {
         name: 'description',
         content:
-          'Welcome to the official page of the Dhaka International Marathon 2025. Run for Unity. Run for Humanity.',
+          'Welcome to the official page of the Dhaka International Marathon 2026. Run for Unity. Run for Humanity.',
       },
-      { title: 'Dhaka International Marathon 2025' },
-      { property: 'og:title', content: 'Dhaka International Marathon 2025' },
+      { title: 'Dhaka International Marathon 2026' },
+      { property: 'og:title', content: 'Dhaka International Marathon 2026' },
       {
         property: 'og:description',
         content:

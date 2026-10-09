@@ -17,7 +17,7 @@ export function AboutEvents() {
         <div className={styles.grid}>
           {/* Card 1 */}
           <div className={`${styles.card} ${styles.cardWhite}`}>
-            <h3 className={styles.cardTitle}>DHAKA INTERNATIONAL<br/>MARATHON 2025</h3>
+            <h3 className={styles.cardTitle}>DHAKA INTERNATIONAL<br/>MARATHON 2026</h3>
             <p className={styles.cardText}>
               Is an inaugural Marathon Race by Bangladesh Army with a view to engage students, youths, veterans and all classes of people in active and healthy lifestyle! Bangladesh Army has been organizing large scale Marathon races since 2021.
             </p>
@@ -25,7 +25,7 @@ export function AboutEvents() {
 
           {/* Card 2 */}
           <div className={`${styles.card} ${styles.cardWhite}`}>
-            <h3 className={styles.cardTitle}>DHAKA INTERNATIONAL<br/>MARATHON 2025</h3>
+            <h3 className={styles.cardTitle}>DHAKA INTERNATIONAL<br/>MARATHON 2026</h3>
             <p className={styles.cardText}>
               Over the years, the races organized by this prestigious institution has significantly impacted the society and thousand lives to remain active, positive and agile to drive the society to a sustainable future.
             </p>

@@ -7,7 +7,7 @@ export function AboutUs() {
         <h1 className={styles.title}>About Us</h1>
         
         <p className={styles.textBlock}>
-          Welcome to the official page of the Dhaka International Marathon 2025, an inaugural event proudly organized by the Bangladesh Army. This marathon is more than just a race; it is a celebration of health, unity, and resilience, designed to inspire and engage individuals from all walks of life in adopting an active and healthy lifestyle.
+          Welcome to the official page of the Dhaka International Marathon 2026, an inaugural event proudly organized by the Bangladesh Army. This marathon is more than just a race; it is a celebration of health, unity, and resilience, designed to inspire and engage individuals from all walks of life in adopting an active and healthy lifestyle.
         </p>
 
         <p className={styles.textBlock}>
@@ -15,7 +15,7 @@ export function AboutUs() {
         </p>
 
         <p className={styles.textBlock}>
-          The Dhaka International Marathon 2025 represents the culmination of years of expertise, skill, and passion. Under the visionary guidance of the Respected Chief of Army Staff, this race is set to become a landmark event that promotes physical fitness, community involvement, and international camaraderie.
+          The Dhaka International Marathon 2026 represents the culmination of years of expertise, skill, and passion. Under the visionary guidance of the Respected Chief of Army Staff, this race is set to become a landmark event that promotes physical fitness, community involvement, and international camaraderie.
         </p>
 
         <p className={styles.textBlock}>
@@ -35,7 +35,7 @@ export function AboutUs() {
         </p>
 
         <p className={styles.textBlock}>
-          Join us in this extraordinary journey of endurance and achievement, and let's move towards a healthier, more active future together. Whether you're a student, youth, veteran, or a fitness enthusiast, the Dhaka International Marathon 2025 welcomes you to be part of this historic event.
+          Join us in this extraordinary journey of endurance and achievement, and let's move towards a healthier, more active future together. Whether you're a student, youth, veteran, or a fitness enthusiast, the Dhaka International Marathon 2026 welcomes you to be part of this historic event.
         </p>
 
         <p className={styles.textBlock}>
