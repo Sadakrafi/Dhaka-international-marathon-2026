@@ -14,7 +14,9 @@ export function Hero() {
 
         {/* 2. Main Heading */}
         <h1 className={styles.heading}>
-          {"Dhaka International\nMarathon 2026"}
+          Dhaka International
+          <br />
+          Marathon <span className={styles.year}>2026</span>
         </h1>
 
         {/* 3. Subtitle */}
