@@ -65,10 +65,13 @@ export function UpcomingEvents() {
 
               <div className={styles.cardOverlay} />
 
-              <svg className={styles.wave} viewBox="0 0 400 110" preserveAspectRatio="none" aria-hidden="true">
-                <path d="M0 58C48 28 92 86 158 54c66-32 112 22 176-8 22-10 42-6 66 2v62H0V58Z" fill="#0A3218"/>
-                <path d="M0 72C58 46 104 98 168 68c64-30 108 18 168-6 20-8 40-4 64 4v44H0V72Z" fill="#146033"/>
-                <path d="M0 52C50 22 96 80 162 48c68-34 114 20 178-10 22-10 40-6 60 2" fill="none" stroke="#E2B423" strokeWidth="3"/>
+              <svg className={styles.wave} viewBox="0 0 800 110" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M0 58C48 28 92 86 158 54c66-32 112 22 176-8 22-10 42-6 66 12v52H0Z" fill="#0A3218"/>
+                <path d="M0 72C58 46 104 98 168 68c64-30 108 18 168-6 20-8 40-4 64 10v28H0Z" fill="#146033"/>
+                <path d="M0 52C50 22 96 80 162 48c68-34 114 20 178-10 22-10 40-6 60 14" fill="none" stroke="#E2B423" strokeWidth="3"/>
+                <path d="M400 58C448 28 492 86 558 54c66-32 112 22 176-8 22-10 42-6 66 12v52H400Z" fill="#0A3218"/>
+                <path d="M400 72C458 46 504 98 568 68c64-30 108 18 168-6 20-8 40-4 64 10v28H400Z" fill="#146033"/>
+                <path d="M400 52C450 22 496 80 562 48c68-34 114 20 178-10 22-10 40-6 60 14" fill="none" stroke="#E2B423" strokeWidth="3"/>
               </svg>
 
               <div className={styles.cardContent}>
