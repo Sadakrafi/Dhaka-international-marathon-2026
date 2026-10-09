@@ -14,7 +14,7 @@ export function Hero() {
 
         {/* 2. Main Heading */}
         <h1 className={styles.heading}>
-          {"Dhaka International\nMarathon 2025"}
+          {"Dhaka International\nMarathon 2026"}
         </h1>
 
         {/* 3. Subtitle */}
@@ -25,12 +25,7 @@ export function Hero() {
 
         {/* 4. Call to Action Buttons */}
         <div className={styles.buttonGroup}>
-          <button 
-            className={styles.btnOutline}
-            onClick={() => document.getElementById('about-events')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            Learn more
-          </button>
+          
           <button className={styles.btnSolid}>
             Registration Now
             <span className={styles.iconCircle}>

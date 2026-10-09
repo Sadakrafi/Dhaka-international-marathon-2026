@@ -113,6 +113,10 @@
   flex-shrink: 0;
 }
 
+.loginInMenu {
+  display: none;
+}
+
 .loginBtn:hover {
   background-color: #072216;
   box-shadow: 0 4px 12px rgba(10, 46, 31, 0.3);
@@ -141,7 +145,8 @@
   }
 }
 
-@media (max-width: 768px) {
+/* Below 768px. 767.98px keeps a 768px-wide window on the desktop layout. */
+@media (max-width: 767.98px) {
   .header {
     margin-top: 16px;
     border-radius: 52px;
@@ -151,6 +156,10 @@
 
   .menuBtn {
     display: flex;
+  }
+
+  .loginInHeader {
+    display: none;
   }
 
   .nav {
@@ -180,5 +189,12 @@
     font-size: 16px;
     padding: 12px 16px;
     border-radius: 16px;
+  }
+
+  .navOpen .loginInMenu {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 8px;
   }
 }
