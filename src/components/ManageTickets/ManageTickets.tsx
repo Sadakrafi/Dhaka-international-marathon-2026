@@ -10,7 +10,7 @@ export function ManageTickets() {
           <div className={styles.header}>
             <h2 className={styles.title}>Manage Your Tickets</h2>
             <p className={styles.subtitle}>
-              Transfer, verify, or access your passes,<br/>all in one place.
+            Purchase, verify, or access your passes,<br/>all in one place.
             </p>
           </div>
 
@@ -24,8 +24,8 @@ export function ManageTickets() {
                   </svg>
                 </div>
                 <div className={styles.btnText}>
-                  <span className={styles.btnTitle}>Transfer Ticket</span>
-                  <span className={styles.btnSubtitle}>Share with friends or family in a tap</span>
+                  <span className={styles.btnTitle}>Purchase Ticket</span>
+                  <span className={styles.btnSubtitle}>Choose your race category and secure your spot.</span>
                 </div>
               </div>
               <div className={styles.arrowRight}>
