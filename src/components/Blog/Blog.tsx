@@ -70,12 +70,12 @@ export function Blog() {
                 <span className={styles.date}>{post.date}</span>
                 <h3 className={styles.postTitle}>{post.title}</h3>
                 <p className={styles.excerpt}>{post.excerpt}</p>
-                <a href="#" onClick={(e) => e.preventDefault()} className={styles.readMore}>
+                {/* <a href="#" onClick={(e) => e.preventDefault()} className={styles.readMore}>
                   Read Article
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M5 12h14M12 5l7 7-7 7"/>
                   </svg>
-                </a>
+                </a> */}
               </div>
             </article>
           ))}

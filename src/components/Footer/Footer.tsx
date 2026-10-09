@@ -55,7 +55,9 @@ export function Footer() {
             <p className={styles.colText}>Army Sports Control Board.</p>
             <p className={styles.colText}>Registered Address: Bangladesh Army Headquarters, Dhaka Cantonment, Dhaka, Bangladesh</p>
             <p className={styles.colText}>Trade License No: 03-097531</p>
-            <p className={styles.colText}>Mobile: 01329931605</p>
+            <p className={styles.colText}>
+              Mobile: <a href="tel:+8801333341612" className={styles.phoneLink}>01333341612</a>
+            </p>
             <p className={styles.colText}>Email: info@dhakainternationalmarathon.org</p>
           </div>
         </div>
@@ -67,7 +69,7 @@ export function Footer() {
 
         {/* Copyright */}
         <div className={styles.copyright}>
-          © 2025 DHAKA INTERNATIONAL MARATHON.
+          © 2026 DHAKA INTERNATIONAL MARATHON.
         </div>
 
       </div>

@@ -87,12 +87,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 8px;
   margin-top: 40px;
+  padding: 0 24px;
 }
 
 .dot {
-  width: 24px;
+  width: 16px;
   height: 4px;
   background-color: #D1D5DB;
   border-radius: 4px;

@@ -3,6 +3,19 @@ import { Link } from '@tanstack/react-router'
 import styles from './Header.module.css'
 import logoImage from '../../assets/logo.png'
 
+function LoginAction({ className, onClick }: { className?: string; onClick?: () => void }) {
+  return (
+    <a href="#" className={[styles.loginBtn, className].filter(Boolean).join(' ')} onClick={onClick}>
+      <span className={styles.loginText}>Login</span>
+      <span className={styles.iconCircle}>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </span>
+    </a>
+  )
+}
+
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -29,6 +42,7 @@ export function Header() {
           <Link to="/" hash="about-events" className={`${styles.navLink} text-b1`} onClick={closeMenu}>About us</Link>
           <Link to="/contact" className={`${styles.navLink} text-b1`} activeProps={{ className: styles.active }} onClick={closeMenu}>Contact us</Link>
           <Link to="/blog" className={`${styles.navLink} text-b1`} activeProps={{ className: styles.active }} onClick={closeMenu}>Blog</Link>
+          <LoginAction className={styles.loginInMenu} onClick={closeMenu} />
         </nav>
 
         <div className={styles.btnArea}>
@@ -50,14 +64,7 @@ export function Header() {
               </svg>
             )}
           </button>
-          <button type="button" className={styles.loginBtn}>
-            <span className={styles.loginText}>Login</span>
-            <span className={styles.iconCircle}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </span>
-          </button>
+          <LoginAction className={styles.loginInHeader} />
         </div>
         
       </header>

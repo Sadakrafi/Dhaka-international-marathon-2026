@@ -4,24 +4,44 @@ import styles from './FAQ.module.css';
 
 const faqData = [
   {
-    question: "What is the minimum preparation someone should have to take part in a marathon?",
-    answer: "Regular running practice, gradually increasing distance, getting enough rest, wearing proper shoes, and warming up before running."
+    question: "How do I register?",
+    answer: "Choose your race category on the registration page, verify your mobile number with an OTP, enter your details, then pay online. Once payment is complete, you will see a confirmation page with your personal QR code."
   },
   {
-    question: "How do you build stamina safely for a marathon?",
-    answer: "Start slow, maintain a consistent running schedule, incorporate interval training, and ensure you're hydrating well."
+    question: "Why do I need an OTP?",
+    answer: "We verify your mobile number before holding a place for you. This helps prevent fake and duplicate registrations."
   },
   {
-    question: "What common mistakes do new marathon runners make that you wanna avoid?",
-    answer: "Starting too fast, ignoring nutrition during the race, wearing new shoes, and neglecting rest days."
+    question: "How long is my place held while I pay?",
+    answer: "Your place is held for 15 minutes after you choose a category. Once you start payment, your place stays reserved and will not be lost halfway through. If you do not pay, the place is released for other runners."
   },
   {
-    question: "Third, how should someone pace themselves on race day to avoid burning out too early?",
-    answer: "Stick to a consistent target pace, avoid the temptation to speed up early, and use a pacing strategy like negative splits."
+    question: "How do I pay, and is it secure?",
+    answer: "Payment is handled by SSLCommerz [available options: card, mobile banking, net banking]. Your card details never reach our servers."
   },
   {
-    question: "What common mistakes do new marathon runners make that you wanna avoid?",
-    answer: "Starting too fast, ignoring nutrition during the race, wearing new shoes, and neglecting rest days."
+    question: "My money was deducted but I did not receive a confirmation. What should I do?",
+    answer: "Pending payments are checked against the payment gateway every 5 minutes. If the session has expired, we keep checking every hour for up to 48 hours. Wait a few minutes, then try the “Find my order” page. If you still cannot find your order, contact support at [support number]."
+  },
+  {
+    question: "I lost my confirmation or QR code. What should I do?",
+    answer: "Use the “Find my order” page with your order number and mobile number. You can also sign in to My Account with a password, an email link or a mobile OTP to see your registration and QR code."
+  },
+  {
+    question: "Can I register someone else?",
+    answer: "No. Gift registration is not available for this event. The person who will run should register with their own details."
+  },
+  {
+    question: "Are there any promo codes or discounts?",
+    answer: "No. There are no promo or discount codes for this event. Category prices are shown on the registration page."
+  },
+  {
+    question: "Can I correct my details after registering?",
+    answer: "While registration is open, you can edit your details yourself from My Account. After registration closes, you can submit change requests for 7 days, and the organisers approve them before the details are updated. After that, your details are locked."
+  },
+  {
+    question: "What do I need for race pack collection?",
+    answer: "Show your confirmation QR code on your phone. A volunteer will scan it to check you in. Your BIB number will appear on your registration once it is assigned. Pack collection date and location: [to be announced]"
   }
 ];
 
